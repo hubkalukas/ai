@@ -925,21 +925,16 @@
       if (input) input.value = '';
     }
 
-    const BUILTIN_SECONDARY_API_KEY = "AQ.Ab8RN6KhRex8AKtEZk2v1KJm02MZdSC4v8GO_asYPz1Fxj9-vg";
-
     function getEffectiveApiKeys() {
       const keys = [];
       const customKey = (localStorage.getItem('gemini_api_key') || '').trim();
-      const secondaryKey = (localStorage.getItem('gemini_secondary_api_key') || BUILTIN_SECONDARY_API_KEY).trim();
+      const secondaryKey = (localStorage.getItem('gemini_secondary_api_key') || '').trim();
 
       if (customKey.length > 5) {
         keys.push(customKey);
       }
       if (secondaryKey.length > 5 && !keys.includes(secondaryKey)) {
         keys.push(secondaryKey);
-      }
-      if (!keys.includes(BUILTIN_SECONDARY_API_KEY)) {
-        keys.push(BUILTIN_SECONDARY_API_KEY);
       }
       if (unlockedVipKeys && Array.isArray(unlockedVipKeys)) {
         for (const vk of unlockedVipKeys) {
@@ -2077,7 +2072,7 @@ EXPLANATION: [short sharp explanation in CZECH language. If countdown/loading sc
       document.getElementById('historyBadgeCount').textContent = historyItems.length;
       document.getElementById('geminiApiKeyInput').value = localStorage.getItem('gemini_api_key') || '';
       if (document.getElementById('geminiSecondaryApiKeyInput')) {
-        document.getElementById('geminiSecondaryApiKeyInput').value = localStorage.getItem('gemini_secondary_api_key') || BUILTIN_SECONDARY_API_KEY;
+        document.getElementById('geminiSecondaryApiKeyInput').value = localStorage.getItem('gemini_secondary_api_key') || '';
       }
       
       let savedModel = localStorage.getItem('gemini_model') || 'gemini-3.5-flash-lite';
